@@ -2,10 +2,10 @@ package org.jaweze.proprietor;
 
 import org.immutables.value.Value;
 
-@Value.Immutable
-public abstract class PropertyPath<ObjectType, PropertyType>
-        implements PropertyAccessor<ObjectType, PropertyType> {
+import java.util.List;
 
-    public abstract <OtherPropertyType>
-    PropertyPath<ObjectType, OtherPropertyType> compose(PropertyPath<PropertyType, OtherPropertyType> otherPropertyPath);
+@Value.Immutable
+public interface PropertyPath<ObjectType, PropertyType> extends PropertyAccessor<ObjectType, PropertyType> {
+
+    List<PropertyMetadata<?, ?>> getPropertiesOnPath();
 }
