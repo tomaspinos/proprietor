@@ -40,6 +40,11 @@ public class ProprietorTest {
         public static final PropertyMetadata<BeanA, BeanA> nestedBean = new SimplePropertyMetadata<>("nestedBean", BeanA.class, BeanA::getNestedBean, null);
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void shouldHandleEmptyPathInGet() {
+        Proprietor.get(PropertyPath.empty(), new BeanA("a", null));
+    }
+
     @Test
     public void shouldGetOwnPropertyValue() {
         SimplePropertyPath<BeanA, String> path = SimplePropertyPath.create(BeanA_.name);
